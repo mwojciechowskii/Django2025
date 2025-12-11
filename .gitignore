@@ -1,0 +1,4 @@
+__pycache__/
+pyrightconfig.json
+.python-version
+db.sqlite3

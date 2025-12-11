@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Myproject | Home</title>
+    </head>
+    <body>
+        <p>
+			<a href="/">Home</a> | <a href="/about/">About me</a> | <a href="/contact/">Contact</a>
+        </p>
+
+        <h1>Home</h1>
+        {% if bool_item %}
+        <p>Your number is: <b>{{ your_number }}</b>!
+        <p>You are very lucky</p>
+        {% else %}
+        <p>You are not allowed to see the number</p>
+        {% endif %}
+
+        <p>You have <b>{{ some_list|length }}</b> items:</p>
+        <ul>
+        {% for num in some_list %}
+        <li>{{ num }}</li>
+        {% endfor %}
+        </ul>
+
+        <p>{{ some_list.1 }}</p>
+
+
+        {% for key, value in some_dict.items %}
+            <p>{{ key }} - {{ value }}</p>
+        {% endfor %}
+
+        <p>{{ some_dict.A }}</p>
+		<a href="/genbank/">CHECK GENBANK INFO </a>
+    </body>
+</html>
