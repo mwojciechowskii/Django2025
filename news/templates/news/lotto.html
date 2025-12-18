@@ -1,6 +1,7 @@
 {% extends 'myapp/base.html' %}
 
-{% block title %}Lotto{% endblock %}
+{% block title %}Lotto {%endblock%}
+{% block windowTitle %}Lotto{% endblock %}
 
 {% block content %}
 
@@ -17,9 +18,9 @@
   <table style="width:15%; border-collapse: collapse;">
     <thead>
       <tr>
-        <th style="border:1px solid #ddd; text-align:left;">Liczba</th>
-        <th style="border:1px solid #ddd; text-align:right;">Ile razy</th>
-        <th style="border:1px solid #ddd; text-align:right;">Udział (%)</th>
+        <th style="border:1px solid #ddd; text-align:left;">Number</th>
+        <th style="border:1px solid #ddd; text-align:right;">Occurences</th>
+        <th style="border:1px solid #ddd; text-align:right;"> % </th>
       </tr>
     </thead>
     <tbody>
