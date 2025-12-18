@@ -1,14 +1,11 @@
-<!doctype html>
-<html>
-    <head>
-        <title>Myproject | Home</title>
-    </head>
-    <body>
-        <p>
-			<a href="/">Home</a> | <a href="/about/">About me</a> | <a href="/contact/">Contact</a>
-        </p>
+{% extends 'myapp/base.html' %}
 
+{% block window_title %}Home{% endblock %}
+
+{% block content %}
         <h1>Home</h1>
+		<h3>WORK IN PROGRESS</h3>
+<progress></progress>
         {% if bool_item %}
         <p>Your number is: <b>{{ your_number }}</b>!
         <p>You are very lucky</p>
@@ -32,5 +29,4 @@
 
         <p>{{ some_dict.A }}</p>
 		<a href="/genbank/">CHECK GENBANK INFO </a>
-    </body>
-</html>
+	{% endblock %}

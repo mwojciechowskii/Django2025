@@ -1,0 +1,61 @@
+:root{
+  --sidebar-percent: 8vw;   
+  --sidebar-max-px: 260px;  
+	--header-height: 56px;   
+	font-family: Arial, sans-serif;
+}
+
+.xp-body{
+	background-color: #ece9d8;
+}
+.container {
+	box-sizing: border-box;
+}
+.window{
+	overflow: hidden;
+	position: relative;
+}
+
+.sidebar {
+	width: min(var(--sidebar-percent), var(--sidebar-max-px));
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	padding: 8px;
+	display: flex;
+	align-items: stretch;
+}
+
+.tree-view{
+	font-family: "Pixelated MS Sans Serif",Arial;
+	font-size: 11px;
+	display: block;
+	background: #fff;
+	border: 1px solid #7f9db9;
+	padding: 2px 5px;
+}
+.window-body{
+	padding-left: calc(min(var(--sidebar-percent), var(--sidebar-max-px)));
+}
+
+.big{
+  font-size: 14px;    
+}
+
+.site-main {
+	padding-left: 12px;
+	padding-bottom: 36px;
+	min-height: calc(100vh - var(--header-height));
+	/*background-image: url(../img/windows-wallpaper.jpg); */
+}
+
+.site-footer {
+	padding:18px 0;
+	text-align:center;
+	font-size:13px;
+}
+.window-body h1,
+.window-body .page-title {
+  margin-top: 0;
+	margin-bottom:0;
+}

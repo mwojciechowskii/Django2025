@@ -1,0 +1,38 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}Lotto{% endblock %}
+
+{% block content %}
+
+    <h1>Lotto results</h1>
+  {% if error %}
+    <div> {{ error }}</div>
+  {% endif %}
+<h3>Last wining numbers: {{lastWinner}}</h3>	
+<h3>Date of last win: {{lastWinDatecpy}}</h3>	
+<p style='font-size: 16px'> Time since last win: {{ lastWinDate|timesince }}
+  <p><strong>Total draws:</strong> {{ totalDraws }}</p>
+
+  <h2>Appearances of numbers</h2>
+  <table style="width:15%; border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th style="border:1px solid #ddd; text-align:left;">Liczba</th>
+        <th style="border:1px solid #ddd; text-align:right;">Ile razy</th>
+        <th style="border:1px solid #ddd; text-align:right;">Udział (%)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for stat in numbersStats %}
+      <tr>
+			<td style="border:1px solid #eee; text-align:left;">{{ stat.number }}</td>
+			<td style="border:1px solid #eee;  text-align:right;">{{ stat.count }}</td>
+			<td style="border:1px solid #eee;  text-align:right;">{{ stat.percent|floatformat:2 }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+{% endblock %}
+

@@ -1,0 +1,86 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>{% block title %}My page{% endblock %}</title>
+
+		<link rel="stylesheet" href="https://unpkg.com/xp.css">
+		<link rel="stylesheet" href="{% static 'myapp/css/styles.css' %}">
+
+	</head>
+
+	<body class="xp-body">
+		<aside class="sidebar">
+			<ul class="tree-view">
+				<li class="big">Content</li>
+				<li><a href="{% url 'myapp:home' %}"> Main Page </a> </li>
+
+				<li><a href="{% url 'myapp:about' %}"> About </a> </li>
+				<li><a href="{% url 'myapp:contact' %}"> Contact </a> </li>
+				<li><details open><summary> <a href="{% url 'news:news'%}"> News </a> </summary> 
+					<ul>
+						<li> <a href="{% url 'news:lotto' %}"> Lotto News </a> </li>
+					</ul>
+				</details>
+
+				<li>
+					<details open>
+						<summary>JavaScript</summary>
+						<ul>
+							<li>Avoid at all costs</li>
+							<li>
+								<details>
+									<summary>Unless</summary>
+									<ul>
+										<li>Avoid</li>
+										<li>
+											<details>
+												<summary>At</summary>
+												<ul>
+													<li>Avoid</li>
+													<li>At</li>
+													<li>All</li>
+													<li>Cost</li>
+												</ul>
+											</details>
+										</li>
+										<li>All</li>
+										<li>Cost</li>
+									</ul>
+								</details>
+							</li>
+						</ul>
+					</details>
+				</li>
+				<li>HTML</li>
+				<li>Special Thanks</li>
+			</ul>
+		</aside>
+
+		<div class="window-body">
+			<div class="window" role="dialog" aria-label="Site Window">
+				<div class="title-bar">
+					<div class="title-bar-text">{% block windowTitle %}{% endblock %}</div>
+					<div class="title-bar-controls">
+						<button aria-label="Minimize"></button>
+						<button aria-label="Maximize"></button>
+						<button aria-label="Close"></button>
+					</div>
+				</div>
+
+				<main class="site-main container" id="content">
+					{% block content %}
+					{% endblock %}
+				</main>
+			</div>
+		</div>
+
+		<footer class="site-footer">
+			<div class="container">
+				<small>Built with <a href="https://botoxparty.github.io/XP.css/" target="_blank" rel="noopener">XP.css</a></small>
+			</div>
+		</footer>
+	</body>
+</html>

@@ -7,7 +7,7 @@ from django.template import context
 
 
 # Create your views here.
-def home_view(request):
+def homeView(request):
     context = {
         'your_number': random.randint(1, 10),
         'bool_item': True,
@@ -21,7 +21,7 @@ def home_view(request):
     return render(request, 'myapp/index.html', context)
 
 
-def contact_view(request):
+def contactView(request):
     return render(request, 'myapp/contact.html')
 
 def aboutView(request):
@@ -62,19 +62,14 @@ def genbankView(request):
     response = requests.get('https://ftp.ncbi.nlm.nih.gov/genbank/README.genbank')
     content = response.text
 
-    #bez tego lsp krzyczy mi blad, bo pyright chcialby znac typy, ignore
-    version: str | None = None
-    date: str | None = None
 
+    context = {}
     for line in content.split('\n'):
         if 'GenBank Flat File Release' in line:
-            version = line
-        if 'Release Availability Date' in line:
-            date = line
-        if version and date:
+            context['version'] = line
+        elif 'Release Availability Date' in line:
+            context['date'] = line
             break
 
-    context = {'version': version,
-               'date': date}
     return render(request, 'myapp/genbank.html', context)
 

@@ -1,12 +1,9 @@
-<!doctype html>
-<html>
-    <head>
-        <title>Myproject | About me</title>
-    </head>
-    <body>
-        <p>
-			<a href="/">Home</a> | <a href="/about/">About me</a> | <a href="/contact/">Contact</a>
-        </p>
+{% extends 'myapp/base.html' %}
+
+{% block windowTitle %}About{% endblock %}
+
+{% block content %}
+
         <h1>About me</h1>
 		{% if luckyNumber == unluckyNumber %}
 		<p> <b>Don't worry, be happy!</b> 
@@ -20,7 +17,6 @@
 			<li><a href="{{ tech.url }}">{{ tech.name }}</a>:  {{ tech.level }}</li>
 			{% endfor %}
 		</ul>
+	{% endblock %}
 
-    </body>
-</html>
 
