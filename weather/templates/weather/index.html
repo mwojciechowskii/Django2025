@@ -2,9 +2,10 @@
 
 {% load static %}
 
-{% block addCSS %}
+	{% block addCSS %}
 
 <link rel="stylesheet" href="{% static 'weather/css/styles.css' %}">
+
 {% endblock %}
 
 {% block title %}Weather{% endblock %}
@@ -12,56 +13,76 @@
 
 {% block content %}
 
-<h1 class=city-title>Weather in {{ City }}</h1>
-
-<form method="get" action="{% url 'weather:weather' %}">
-<div class="field-row">
-  <label for="City">Enter city</label>
-  <input id="text21" name="City" type="text" value="{{ search_city }}"/>
-	<button>Get weather</button>
+<div class="win-toolbar">
+	<div class="subbar">
+		<p class="item">File</p>
+		<p class="item">Edit</p>
+		<p class="item">View</p>
+		<p class="item">Favourites</p>
+		<p class="item">Tools</p>
+		<p class="item">Help</p>
+	</div>
+	<div class="win-logo"></div>
 </div>
-</form>
+<div>
+	<div class="toolbar-icons">
+		<div class="back-button">placeholder </div>
+		<div class="forward-button">placehold </div>
+		<div class="folders">fold</div>
+	</div>
+	<div class="search-bar">
 
-<form id="city-form" onsubmit="goToCity(event)">
-  <div class="field-row">
-    <label for="City">Choose city</label>
-    <select id="City">
-      <option value="">— Select a city —</option>
-      <option value="Brussels">Brussels</option>
-      <option value="Poznan">Poznan</option>
-      <option value="London">London</option>
-      <option value="Paris">Paris</option>
-      <option value="Berlin">Berlin</option>
-    </select>
-    <button type="submit">Show weather</button>
-  </div>
-</form>
-<script>
+		<form method="get" action="{% url 'weather:weather' %}" class="source-form">
+			<label for="City" style="padding: 3px;">Choose city</label>
+			<select id="City" name="City" style="width: 70ch;">
+				<option value="">— Select a city —</option>
+				<option value="Brussels" name="City">Brussels</option>
+				<option value="Poznan"name="City">Poznan</option>
+				<option value="London"name="City">London</option>
+				<option value="Paris" name="City">Paris</option>
+				<option value="Berlin"name="City">Berlin</option>
+			</select>
+			<button type="submit">Show weather</button>
+		</form>
 
-//ai generated
-  function goToCity(e) {
-    e.preventDefault();
-    const city = document.getElementById('City').value.trim();
-    if (!city) return;
-    const template = "{% url 'weather:cityWeather' inputCity='CITY_PLACEHOLDER' %}";
-    const url = template.replace('CITY_PLACEHOLDER', encodeURIComponent(city));
-    window.location.href = url;
-  }
-</script>
+		<form method="get" action="{% url 'weather:weather' %}">
+			<div class="field-row">
+				<label for="City">Enter city</label>
+				<input id="text21" name="City" type="text" value="{{ search_city }}"/>
+			</div>
+		</form>
+
+	</div>
+</div>
 
 {% if error %}
 <div class="alert alert-danger">{{ error }}</div>
 {% else %}
-<div class=weatherContent>
-<h4>{{ City }}, {{ Country }}</h4>
-<p> Temp: {{ Temperature }}°C</p>
-<p> Pressure: {{ Pressure }} hPa </p>
-<p> Observation date: {{ localObsDateTime }} </p>
-<p> {{ WeatherDesc }}</p>
+<div class="weatherContent" style="display: flex; justify-content: center; align-items: center;">
+	<!-- kiedys bedzie draggable -->
+	<div class="window">
+		<div class="title-bar">
+			<div class="title-bar-text">{{ City }}, {{ Country }}</div>
+			<div class="title-bar-controls">
+
+			<button aria-label="Close" onclick="this.closest('.window').remove()"></button>
+			</div>
+
+		</div>
+		<div class="window-body" style="font-size: 14px;">
+
+			<p> Observation date: {{ localObsDateTime }} </p>
+			<p> {{ WeatherDesc }}</p>
+		</div>
+		<div class="status-bar">
+			<p class="status-bar-field">Press F1 for help</p>
+			<p class="status-bar-field"> Temp: {{ Temperature }}°C</p>
+			<p class="status-bar-field"> Pressure: {{ Pressure }} hPa </p>
+		</div>
+	</div>
 </div>
 
 {% endif %}
-	<progress></progress>
 
 {% endblock %}
 

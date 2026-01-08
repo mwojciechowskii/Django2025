@@ -1,24 +1,65 @@
 .field-row{
-  max-width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-	margin-top: 3%;
-	font-size: 14px;
-}
-.field-row label {
-  font-size: 18px;          /* was ~12-13px */
-}
-
-.field-row input[type="text"] {
-  font-size: 18px;
-  height: 28px;             
-  padding: 4px 8px;        
-  width: 260px;           
-  box-sizing: border-box;
+	position:absolute;
+	right: 0;
+	padding-right: 1%;
 }
 .city-title{
-  max-width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
+	max-width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
 	margin-top: 22%;
+}
+.win-logo{
+	background-image: url(../img/winlogo.png);
+	background-size: cover;
+	width: 50px;
+	height: 98%;
+}
+.win-toolbar{
+	display: flex;
+	height: 32px;
+	flex-direction: row;
+	border-bottom: 2px solid rgba(0, 0, 0, .1);
+}
+.subbar{
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	height: 100%;
+	width: 100%;
+	background-color: #ede9d3;
+	border-right: 1px solid rgba(0, 0, 0, .1);
+}
+.item{
+	cursor: default;
+	font-size: 13px;
+	padding: 6px;
+	border: 1px solid transparent;
+}
+.toolbar-icons{
+	display: flex;
+	flex-direction: row;
+	background: #ede9d3;
+	height: 35px;
+	align-items: center;
+	padding: 5px;
+	font-size: 14px;
+}
+.search-bar{
+	display: flex;
+	flex-direction: row;
+	height: 30px;
+	border-top: 2px solid rgba(0, 0, 0, .1);
+	background: #ede9d3;
+	padding-top: 2px;
+}
+.title-bar,
+.title-bar-text {
+  cursor: move;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.window {
+  box-sizing: border-box;
 }

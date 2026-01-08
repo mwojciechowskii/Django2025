@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block addCSS %}
+	{% block addCSS %}
 
 <link rel="stylesheet" href="{% static 'news/css/styles.css' %}">
 {% endblock %}
@@ -14,46 +14,65 @@
 
 {% block content %}
 
-  <h1>News</h1>
-  <!-- Sources menu -->
-  {% for source in sources %}
-    {% if source.id != active_source %}
-    <a href="{% url 'news:news' source.id %}">{{ source.name }}</a>
-    {% else %}
-      {{ source.name }}
-    {% endif %}
-    |
-  {% endfor %}
-  <!-- /Sources menu -->  
+<div class="win-toolbar">
+	<div class="subbar">
+		<p class="item">File</p>
+		<p class="item">Edit</p>
+		<p class="item">View</p>
+		<p class="item">Favourites</p>
+		<p class="item">Tools</p>
+		<p class="item">Help</p>
+	</div>
+	<div class="win-logo"></div>
+</div>
+<div>
+	<div class="toolbar-icons">
+		<div class="back-button">placeholder </div>
+		<div class="forward-button">placehold </div>
+		<div class="folders">fold</div>
+	</div>
+	<div class="search-bar">
 
-  <br><br>
+		<form method="get" action="{% url 'news:news' %}" class="source-form">
+			<label for="news-source" style="padding: 3px;">Choose news source</label>
+			<select id="news-source" name="source" style="width: 100ch;">
+				<option value="">— Select source —</option>
+				{% for source in sources %}
+				<option value="{{ source.id }}" {% if source.id == active_source %}selected{% endif %}>
+					{{ source.name }}
+				</option>
+				{% endfor %}
+			</select>
+			<button type="submit">Show</button>
+		</form>
 
-  {% if newsapi.status == 'ok' %}
-  <div class="news-grid">
-    {% for article in newsapi.articles %}
-      <!-- Article -->
-      <div class="col">
-        <div class="card h-100">
-          <img src="{{ article.urlToImage }}" class="card-img-top" alt="{{ article.title }}">
-          <div class="card-body">
-            <h5 class="card-title">
-              <a target="_blank" href="{{ article.url }}">{{ article.title }}</a>
-            </h5>
-            <p class="card-text">{{ article.description }}</p>
-          </div>
-          <div class="card-footer">
-            <small class="text-body-secondary">{{ article.publishedAt }}</small>
-          </div>
-        </div>
-      </div>
-      <!-- /Article -->
-    {% endfor %}
-  </div>
-  {% else %}
-  <div class="alert alert-danger" role="alert">
-  Sorry, something went wrong!
-  </div>
-  {% endif %}
+	</div>
+</div>
+
+{% if newsapi.status == 'ok' %}
+<div class="news-grid">
+	{% for article in newsapi.articles %}
+	<div class="col">
+		<div class="card h-100">
+			<img src="{{ article.urlToImage }}" class="card-img-top" alt="{{ article.title }}">
+			<div class="card-body">
+				<h5 class="card-title">
+					<a target="_blank" href="{{ article.url }}">{{ article.title }}</a>
+				</h5>
+				<p class="card-text">{{ article.description }}</p>
+			</div>
+			<div class="card-footer">
+				<small class="text-body-secondary">{{ article.publishedAt }}</small>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+{% else %}
+<div class="alert alert-danger" role="alert">
+	Sorry, something went wrong!
+</div>
+{% endif %}
 
 {% endblock %}
 

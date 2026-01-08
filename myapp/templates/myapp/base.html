@@ -6,6 +6,8 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
 		<title>{% block title %}My page{% endblock %}</title>
 
+		<link rel="icon" href="{% static 'myapp/img/favicon.png' %}">
+
 		<link rel="stylesheet" href="https://unpkg.com/xp.css">
 		<link rel="stylesheet" href="{% static 'myapp/css/styles.css' %}">
 
@@ -56,9 +58,15 @@
 					</details>
 				</li>
 			</ul>
+					<footer class="site-footer">
+			<div>
+				<small>Built with <a href="https://botoxparty.github.io/XP.css/" target="_blank" rel="noopener">XP.css</a></small>
+			</div>
+		</footer>
+
 		</aside>
 
-		<div class="window-body">
+		<div class="window-body" id="base">
 			<div class="window" role="dialog" aria-label="Site Window">
 				<div class="title-bar">
 					<div class="title-bar-text">{% block windowTitle %}{% endblock %}</div>
@@ -71,6 +79,7 @@
 				</div>
 				<main class="site-main container" id="content">
 
+				{% block addJS %}{% endblock %}
 				{% block addCSS %}{% endblock %}
 					{% block content %}
 					{% endblock %}
@@ -78,10 +87,5 @@
 			</div>
 		</div>
 
-		<footer class="site-footer">
-			<div class="container">
-				<small>Built with <a href="https://botoxparty.github.io/XP.css/" target="_blank" rel="noopener">XP.css</a></small>
-			</div>
-		</footer>
-	</body>
+		</body>
 </html>

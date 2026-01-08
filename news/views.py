@@ -1,6 +1,6 @@
 from django.conf import settings
 from typing import Counter
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 import requests
 import re
 from datetime import datetime
@@ -15,6 +15,9 @@ SOURCES = [
 ]
 def newsView(request, source='new-scientist'):
 
+    requested = request.GET.get('source')
+    if requested:
+        return redirect('news:news', source=requested)
     url = ('https://newsapi.org/v2/everything?'
            f'sources={source}&'
            f'apiKey={settings.NEWS_KEY}')
