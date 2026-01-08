@@ -1,12 +1,32 @@
+from django.conf import settings
 from typing import Counter
 from django.shortcuts import render
 import requests
 import re
 from datetime import datetime
 
+
 # Create your views here.
-def newsView(request):
-	return render(request, 'news/index.html')
+
+SOURCES = [
+    {'id': 'new-scientist', 'name': 'New Scientist'},
+    {'id': 'techradar', 'name': 'TechRadar'},  
+    {'id': 'national-geographic', 'name': 'National Geographic'},      
+]
+def newsView(request, source='new-scientist'):
+
+    url = ('https://newsapi.org/v2/everything?'
+           f'sources={source}&'
+           f'apiKey={settings.NEWS_KEY}')
+
+    response = requests.get(url)
+    data = response.json()
+    context = {
+        'newsapi': data,
+        'sources': SOURCES,
+        'active_source': source,
+    }
+    return render(request, 'news/index.html', context)
 
 def lottoView(request):
 

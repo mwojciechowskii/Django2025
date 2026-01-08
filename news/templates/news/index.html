@@ -1,11 +1,59 @@
 {% extends 'myapp/base.html' %}
 
+{% load static %}
+
+{% block addCSS %}
+
+<link rel="stylesheet" href="{% static 'news/css/styles.css' %}">
+{% endblock %}
+
 {% block title %}News{% endblock %}
 {% block windowTitle %} News {% endblock %}
 
+{% block nav-link-news %}active{% endblock %}
+
 {% block content %}
 
-    <h1>News</h1>
-    <p>This is news page.</p>
+  <h1>News</h1>
+  <!-- Sources menu -->
+  {% for source in sources %}
+    {% if source.id != active_source %}
+    <a href="{% url 'news:news' source.id %}">{{ source.name }}</a>
+    {% else %}
+      {{ source.name }}
+    {% endif %}
+    |
+  {% endfor %}
+  <!-- /Sources menu -->  
+
+  <br><br>
+
+  {% if newsapi.status == 'ok' %}
+  <div class="news-grid">
+    {% for article in newsapi.articles %}
+      <!-- Article -->
+      <div class="col">
+        <div class="card h-100">
+          <img src="{{ article.urlToImage }}" class="card-img-top" alt="{{ article.title }}">
+          <div class="card-body">
+            <h5 class="card-title">
+              <a target="_blank" href="{{ article.url }}">{{ article.title }}</a>
+            </h5>
+            <p class="card-text">{{ article.description }}</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-body-secondary">{{ article.publishedAt }}</small>
+          </div>
+        </div>
+      </div>
+      <!-- /Article -->
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="alert alert-danger" role="alert">
+  Sorry, something went wrong!
+  </div>
+  {% endif %}
 
 {% endblock %}
+

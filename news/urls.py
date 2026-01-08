@@ -7,4 +7,5 @@ app_name = 'news'
 urlpatterns = [
     path('', views.newsView, name='news'),
     path('lotto/', views.lottoView, name='lotto'),
+    path('<source>/', views.newsView, name='news'),
 ]

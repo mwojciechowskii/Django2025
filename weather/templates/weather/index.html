@@ -1,0 +1,67 @@
+{% extends 'myapp/base.html' %}
+
+{% load static %}
+
+{% block addCSS %}
+
+<link rel="stylesheet" href="{% static 'weather/css/styles.css' %}">
+{% endblock %}
+
+{% block title %}Weather{% endblock %}
+{% block windowTitle %} Weather {% endblock %}
+
+{% block content %}
+
+<h1 class=city-title>Weather in {{ City }}</h1>
+
+<form method="get" action="{% url 'weather:weather' %}">
+<div class="field-row">
+  <label for="City">Enter city</label>
+  <input id="text21" name="City" type="text" value="{{ search_city }}"/>
+	<button>Get weather</button>
+</div>
+</form>
+
+<form id="city-form" onsubmit="goToCity(event)">
+  <div class="field-row">
+    <label for="City">Choose city</label>
+    <select id="City">
+      <option value="">— Select a city —</option>
+      <option value="Brussels">Brussels</option>
+      <option value="Poznan">Poznan</option>
+      <option value="London">London</option>
+      <option value="Paris">Paris</option>
+      <option value="Berlin">Berlin</option>
+    </select>
+    <button type="submit">Show weather</button>
+  </div>
+</form>
+<script>
+
+//ai generated
+  function goToCity(e) {
+    e.preventDefault();
+    const city = document.getElementById('City').value.trim();
+    if (!city) return;
+    const template = "{% url 'weather:cityWeather' inputCity='CITY_PLACEHOLDER' %}";
+    const url = template.replace('CITY_PLACEHOLDER', encodeURIComponent(city));
+    window.location.href = url;
+  }
+</script>
+
+{% if error %}
+<div class="alert alert-danger">{{ error }}</div>
+{% else %}
+<div class=weatherContent>
+<h4>{{ City }}, {{ Country }}</h4>
+<p> Temp: {{ Temperature }}°C</p>
+<p> Pressure: {{ Pressure }} hPa </p>
+<p> Observation date: {{ localObsDateTime }} </p>
+<p> {{ WeatherDesc }}</p>
+</div>
+
+{% endif %}
+	<progress></progress>
+
+{% endblock %}
+

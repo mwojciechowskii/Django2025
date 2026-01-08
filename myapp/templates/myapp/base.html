@@ -19,6 +19,7 @@
 
 				<li><a href="{% url 'myapp:about' %}"> About </a> </li>
 				<li><a href="{% url 'myapp:contact' %}"> Contact </a> </li>
+				<li><a href="{% url 'weather:weather' %}"> Weather </a> </li>
 				<li><details open><summary> <a href="{% url 'news:news'%}"> News </a> </summary> 
 					<ul>
 						<li> <a href="{% url 'news:lotto' %}"> Lotto News </a> </li>
@@ -54,8 +55,6 @@
 						</ul>
 					</details>
 				</li>
-				<li>HTML</li>
-				<li>Special Thanks</li>
 			</ul>
 		</aside>
 
@@ -66,11 +65,13 @@
 					<div class="title-bar-controls">
 						<button aria-label="Minimize"></button>
 						<button aria-label="Maximize"></button>
-						<button aria-label="Close"></button>
+						<button aria-label="Close" onclick="this.closest('.window').remove()"></button>
+
 					</div>
 				</div>
-
 				<main class="site-main container" id="content">
+
+				{% block addCSS %}{% endblock %}
 					{% block content %}
 					{% endblock %}
 				</main>

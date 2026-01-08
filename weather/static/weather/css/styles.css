@@ -1,0 +1,24 @@
+.field-row{
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+	margin-top: 3%;
+	font-size: 14px;
+}
+.field-row label {
+  font-size: 18px;          /* was ~12-13px */
+}
+
+.field-row input[type="text"] {
+  font-size: 18px;
+  height: 28px;             
+  padding: 4px 8px;        
+  width: 260px;           
+  box-sizing: border-box;
+}
+.city-title{
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+	margin-top: 22%;
+}

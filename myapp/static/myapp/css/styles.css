@@ -6,7 +6,9 @@
 }
 
 .xp-body{
-	background-color: #ece9d8;
+	background-image: url(../img/windows-wallpaper.jpg);
+	background-attachment: fixed;
+	/* background-color: #ece9d8; */
 }
 .container {
 	box-sizing: border-box;
@@ -46,14 +48,16 @@
 	padding-left: 12px;
 	padding-bottom: 36px;
 	min-height: calc(100vh - var(--header-height));
-	/*background-image: url(../img/windows-wallpaper.jpg); */
 }
 
 .site-footer {
+	position: fixed;
+	bottom: 0;
 	padding:18px 0;
 	text-align:center;
 	font-size:13px;
 }
+
 .window-body h1,
 .window-body .page-title {
   margin-top: 0;
