@@ -1,0 +1,19 @@
+{% extends 'myapp/base.html' %}
+
+	{% block content %}
+	<h1>Blog</h1>
+	<ul>
+		{% for obj in objectList %}
+		<li>
+			<h3>{{ obj.title|upper }}</h3>
+			<p style="font-size: 16px;">{{ obj.body|truncatewords:10 }}</p>
+			<p> Publykacja: {{ obj.datePublish|date:'Y-m-d H:i' }}</p>
+			<p>{{ obj.dateCreate|date:'Y-m-d H:i' }}
+				({{ obj.dateCreate|timesince }} ago)
+			</p>
+		</li>
+		{% empty %}
+		<h2>Sorry, nothing to show!</h2>
+		{% endfor %}
+	</ul>
+	{% endblock %}

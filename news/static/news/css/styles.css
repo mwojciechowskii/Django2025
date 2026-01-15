@@ -54,7 +54,7 @@ div {
 	padding: 6px;
 	display: grid;
 	gap: 1rem; 
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
 	align-items: stretch;
 	background-color: #6375d6;
 }
