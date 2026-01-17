@@ -1,0 +1,13 @@
+{% extends 'myapp/base.html' %}
+    
+{% block content %}
+
+  <h1>Blog</h1>
+
+  {% include 'blog/includes/categoryWidget.html' %}
+
+  <h3>{{ object.title }}</h3>
+  <p>{{ object.body }}<p>
+  <p>{{ object.datePublish }}</p>
+
+{% endblock %}

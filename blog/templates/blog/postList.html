@@ -2,16 +2,22 @@
 
 	{% block content %}
 	<h1>Blog</h1>
+
+	{% include 'blog/includes/categoryWidget.html' %}
+
 	<ul>
 		{% for obj in objectList %}
-		<li>
-			<h3>{{ obj.title|upper }}</h3>
-			<p style="font-size: 16px;">{{ obj.body|truncatewords:10 }}</p>
-			<p> Publykacja: {{ obj.datePublish|date:'Y-m-d H:i' }}</p>
-			<p>{{ obj.dateCreate|date:'Y-m-d H:i' }}
-				({{ obj.dateCreate|timesince }} ago)
-			</p>
-		</li>
+
+
+		<div onclick="location.href='{% url 'blog:postDetailView' obj.id %}'" style="cursor:pointer;">
+
+				<h3> {{ obj.title|title }} </h3>
+				<p style="font-size: 16px;">{{ obj.body|truncatewords:10 }}</p>
+				<p> Publykacja: {{ obj.datePublish|date:'Y-m-d H:i' }}</p>
+				<p>{{ obj.dateCreate|date:'Y-m-d H:i' }}
+					({{ obj.dateCreate|timesince }} ago)
+				</p>
+		</div>
 		{% empty %}
 		<h2>Sorry, nothing to show!</h2>
 		{% endfor %}
