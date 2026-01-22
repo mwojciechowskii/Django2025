@@ -14,9 +14,11 @@
 
 {% block content %}
 
-<h1>Blog</h1>
+{% url 'blog:postListView' as myURL %}
+{% include "shared/toolbar.html" with showSearch=True formAction=myURL labelText="Choose category" sources=categoryList fieldName="category" valueField="name" activeSource=categoryName %}
 
-{% include 'blog/includes/categoryWidget.html' %}
+<h1 style="text-align: center;">Blog</h1>
+
 {% load markdownRender %}
 
 <ul style="padding-right: 20%;">

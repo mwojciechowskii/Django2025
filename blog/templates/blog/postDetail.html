@@ -9,9 +9,9 @@
    
 {% block content %}
 
-  <h1>Blog</h1>
+<h1 style="text-align: center;">Blog</h1>
 
-  {% include 'blog/includes/categoryWidget.html' %}
+
   {% load markdownRender %}
 <div class="postContent">
   <div style="display: grid; grid-template-columns: 1fr auto; align-items: center; padding-right: 10%;"> <h3>{{ object.title }}</h3>

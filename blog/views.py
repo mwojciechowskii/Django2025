@@ -1,17 +1,21 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.core.paginator import Paginator
 
 from .models import Category, Post
 
 def postListView(request, categoryName=None, authorName=None):
 
-    queryset = Post.objects.all()
-    if categoryName:
-        queryset = Post.objects.filter(isPublic=True, category__name__iexact=categoryName)
-    if authorName:
-        queryset = Post.objects.filter(isPublic=True, author__name__iexact=authorName)
+    getCat = request.GET.get("category")
+    if getCat and not categoryName:
+        return redirect('blog:postListCategory', categoryName=getCat)
 
-    queryset = queryset.filter(isPublic=True).order_by("-datePublish")
+    queryset = Post.objects.filter(isPublic=True)
+    if categoryName:
+        queryset = Post.objects.filter(category__name__iexact=categoryName)
+    if authorName:
+        queryset = Post.objects.filter(author__name__iexact=authorName)
+
+    queryset = queryset.order_by("-datePublish")
 
     paginator = Paginator(queryset, 4)
     pageNo = request.GET.get("page")
