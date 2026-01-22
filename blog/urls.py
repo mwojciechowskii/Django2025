@@ -8,4 +8,5 @@ urlpatterns = [
     path('', views.postListView, name="postListView"),
     path('category/<categoryName>/', views.postListView, name="postListCategory"),
     path('post/<int:postID>', views.postDetailView, name="postDetailView"),
+    path('author/<authorName>', views.postListView, name="postAuthorList")
 ]

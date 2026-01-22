@@ -63,3 +63,6 @@
 .window {
   box-sizing: border-box;
 }
+.weatherContent { position: relative; }
+.weatherContent .window {
+	position: absolute;}

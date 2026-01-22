@@ -2,6 +2,10 @@
 
 {% load static %}
 
+{% block addJS %}
+  <script src="{% static 'weather/js/dragWeather.js' %}"></script>
+{% endblock %}
+
 	{% block addCSS %}
 
 <link rel="stylesheet" href="{% static 'weather/css/styles.css' %}">
@@ -58,10 +62,10 @@
 {% if error %}
 <div class="alert alert-danger">{{ error }}</div>
 {% else %}
-<div class="weatherContent" style="display: flex; justify-content: center; align-items: center;">
+<div id="weatherContent" class="weatherContent" style="display: flex; justify-content: center; align-items: center;">
 	<!-- kiedys bedzie draggable -->
-	<div class="window">
-		<div class="title-bar">
+	<div class="window" id="weatherWindow">
+		<div id="titleBar" class="title-bar">
 			<div class="title-bar-text">{{ City }}, {{ Country }}</div>
 			<div class="title-bar-controls">
 

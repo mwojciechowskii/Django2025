@@ -23,7 +23,7 @@
 		<form method="get" action="{{ formAction }}">
 			<label for="news-source" style="padding: 3px;"> {{ labelText|default:"Choose news source" }} </label>
 			<select id="news-source" name="source" style="width: 100ch;">
-				<option value="">— Select source —</option>
+				<option value="">{{ sublabelText|default:"--Select source--"}} </option>
 				{% for source in sources %}
 				<option value="{{ source.id }}" {% if source.id == active_source %}selected{% endif %}>
 					{{ source.name }}
