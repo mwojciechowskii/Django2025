@@ -12,8 +12,6 @@
 {% block title %}News{% endblock %}
 {% block windowTitle %} News {% endblock %}
 
-{% block nav-link-news %}active{% endblock %}
-
 {% block content %}
 
 {% include "shared/toolbar.html" with showSearch=True formAction=news labelText="Choose category" sources=sources activeSource=active_source %}
