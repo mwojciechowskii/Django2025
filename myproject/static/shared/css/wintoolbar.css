@@ -1,13 +1,6 @@
-.field-row{
-	position:absolute;
-	right: 0;
-	padding-right: 1%;
-}
-.city-title{
-	max-width: fit-content;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 22%;
+div {
+	display: block;
+	unicode-bidi: isolate;
 }
 .win-logo{
 	background-image: url(../img/winlogo.png);
@@ -53,16 +46,3 @@
 	background: #ede9d3;
 	padding-top: 2px;
 }
-.title-bar,
-.title-bar-text {
-  cursor: move;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-}
-.window {
-  box-sizing: border-box;
-}
-.weatherContent { position: relative; }
-.weatherContent .window {
-	position: absolute;}

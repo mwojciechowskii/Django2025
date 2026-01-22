@@ -5,6 +5,8 @@
 	{% block addCSS %}
 
 <link rel="stylesheet" href="{% static 'news/css/styles.css' %}">
+<link rel="stylesheet" href="{% static 'shared/css/wintoolbar.css' %}">
+
 {% endblock %}
 
 {% block title %}News{% endblock %}
@@ -14,40 +16,7 @@
 
 {% block content %}
 
-<div class="win-toolbar">
-	<div class="subbar">
-		<p class="item">File</p>
-		<p class="item">Edit</p>
-		<p class="item">View</p>
-		<p class="item">Favourites</p>
-		<p class="item">Tools</p>
-		<p class="item">Help</p>
-	</div>
-	<div class="win-logo"></div>
-</div>
-<div>
-	<div class="toolbar-icons">
-		<div class="back-button">placeholder </div>
-		<div class="forward-button">placehold </div>
-		<div class="folders">fold</div>
-	</div>
-	<div class="search-bar">
-
-		<form method="get" action="{% url 'news:news' %}" class="source-form">
-			<label for="news-source" style="padding: 3px;">Choose news source</label>
-			<select id="news-source" name="source" style="width: 100ch;">
-				<option value="">— Select source —</option>
-				{% for source in sources %}
-				<option value="{{ source.id }}" {% if source.id == active_source %}selected{% endif %}>
-					{{ source.name }}
-				</option>
-				{% endfor %}
-			</select>
-			<button type="submit">Show</button>
-		</form>
-
-	</div>
-</div>
+{% include "shared/toolbar.html" with showSearch=True formAction=news labelText="Choose category" sources=sources activeSource=active_source %}
 
 {% if newsapi.status == 'ok' %}
 <div class="news-grid">

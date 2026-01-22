@@ -1,25 +1,57 @@
 {% extends 'myapp/base.html' %}
 
-	{% block content %}
-	<h1>Blog</h1>
+{% load static %}
 
-	{% include 'blog/includes/categoryWidget.html' %}
+	{% block addCSS %}
 
-	<ul>
-		{% for obj in objectList %}
+<link rel="stylesheet" href="{% static 'blog/css/styles.css' %}">
+<link rel="stylesheet" href="{% static 'shared/css/wintoolbar.css' %}">
 
+{% endblock %}
 
-		<div onclick="location.href='{% url 'blog:postDetailView' obj.id %}'" style="cursor:pointer;">
+{% block title %}Blog{% endblock %}
+{% block windowTitle %} Blog {% endblock %}
 
-				<h3> {{ obj.title|title }} </h3>
-				<p style="font-size: 16px;">{{ obj.body|truncatewords:10 }}</p>
-				<p> Publykacja: {{ obj.datePublish|date:'Y-m-d H:i' }}</p>
-				<p>{{ obj.dateCreate|date:'Y-m-d H:i' }}
-					({{ obj.dateCreate|timesince }} ago)
-				</p>
+{% block content %}
+
+<h1>Blog</h1>
+
+{% include 'blog/includes/categoryWidget.html' %}
+{% load markdownRender %}
+
+<ul style="padding-right: 20%;">
+	{% for obj in objectList %}
+
+	<div class="postTab" onclick="location.href='{% url 'blog:postDetailView' obj.id %}'">
+
+		<h3> {{ obj.title|title }} </h3>
+		<div>{{ obj.body|markdownRender|truncatewords:6 }}</div>
+		<p> Publykacja: {{ obj.datePublish|date:'Y-m-d H:i' }}</p>
+		<div style="display: grid; grid-template-columns: 1fr auto; align-items: center;">
+			<p>{{ obj.dateCreate|date:'Y-m-d H:i' }}
+				({{ obj.dateCreate|timesince }} ago)
+			</p>
+			<p style="font-size: 13px;" onclick="event.stopPropagation(); location.href='{% url 'blog:postAuthorList' obj.author %}'"> <b>{{obj.author}}</b></p>
 		</div>
-		{% empty %}
-		<h2>Sorry, nothing to show!</h2>
-		{% endfor %}
-	</ul>
-	{% endblock %}
+		</div>
+	{% empty %}
+	<h2>Sorry, nothing to show!</h2>
+	{% endfor %}
+</ul>
+
+{% load pageQuery %}
+
+<nav class="pagination">
+	<!-- dodanie limitu wyswietlanej ilosci numerow stron to rzecz na pozniej -->
+	{% for n in objectList.paginator.page_range %}
+	{% if objectList.number == n %}
+	<button disabled>{{ n }}</button>
+	{% else %}
+	<button type="button" onclick="location.href='{% querystring page=n %}'">
+      {{ n }}
+    </button>
+	{% endif %}
+	{% endfor %}
+</nav>
+
+{% endblock %}

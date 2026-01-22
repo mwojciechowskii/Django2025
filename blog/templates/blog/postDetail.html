@@ -1,13 +1,24 @@
 {% extends 'myapp/base.html' %}
-    
+
+{% load static %}
+
+	{% block addCSS %}
+
+<link rel="stylesheet" href="{% static 'blog/css/postDetail.css' %}">
+{% endblock %}
+   
 {% block content %}
 
   <h1>Blog</h1>
 
   {% include 'blog/includes/categoryWidget.html' %}
-
-  <h3>{{ object.title }}</h3>
-  <p>{{ object.body }}<p>
+  {% load markdownRender %}
+<div class="postContent">
+  <div style="display: grid; grid-template-columns: 1fr auto; align-items: center; padding-right: 10%;"> <h3>{{ object.title }}</h3>
+	  <h4> Author: {{ object.author }}</h4>
+  </div>
+  <div style="font-size: 14px;">{{ object.body |markdownRender|safe }}</div>
   <p>{{ object.datePublish }}</p>
+</div>
 
 {% endblock %}

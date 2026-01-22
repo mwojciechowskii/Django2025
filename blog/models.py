@@ -11,6 +11,13 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+class Author(models.Model):
+
+    name = models.CharField(max_length=20)
+
+    def __str__(self) -> str:
+        return self.name
+
 class Post(models.Model):
 
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
@@ -20,6 +27,7 @@ class Post(models.Model):
     dateUpdate = models.DateTimeField(auto_now=True)
     datePublish = models.DateTimeField(blank=True, null=True)
     isPublic = models.BooleanField(default=True)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.title
